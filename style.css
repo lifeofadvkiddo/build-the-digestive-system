@@ -43,7 +43,7 @@ body {
   background: var(--bg);
   color: var(--white);
   min-height: 100vh;
-  overflow-x: hidden;
+  overflow: hidden;
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
