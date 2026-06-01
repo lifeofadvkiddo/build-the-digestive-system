@@ -21,7 +21,7 @@ const ORGAN_DATA = [
     color: "#ffa726",
     image: "images/stomach.svg",
     // cardPosition: { x: 20, y: 180 },
-    zone: { x: 130, y: 350, width: 155, height: 85 },
+    zone: { x: 130, y: 375, width: 155, height: 85 },
     place: { x: 150, y: 375, width: 170, height: 130 },
     fact: "Your stomach churns food with acid and turns it into a thick liquid! 🌀",
     svg: `<ellipse cx="235" cy="255" rx="45" ry="35" fill="#ffa726"/>`
