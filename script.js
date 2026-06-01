@@ -720,7 +720,7 @@ function handleArrowClick(e) {
   if (clickedArrow === currentPoint.arrow) {
     moveFoodToOrgan();
   } else {
-    showToast("Wrong arrow! Try the correct direction.", "wrong");
+    showToast("Wrong direction! Try the correct direction.", "wrong");
   }
 }
 
