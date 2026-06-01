@@ -244,20 +244,46 @@ function spawnStars(x, y) {
   });
 }
 
-function launchConfetti(container) {
-  container.innerHTML = "";
-  const pieces = ["🎉", "⭐", "🌟", "✨", "🎊", "💛", "🟢", "🔵", "🟣", "🩷"];
+function spawnConfetti() {
+  const container = $("s2-confetti");
+  if (!container) return;
 
-  for (let i = 0; i < 35; i++) {
+  container.innerHTML = "";
+
+  for (let i = 0; i < 30; i++) {
     setTimeout(() => {
-      const el = document.createElement("div");
-      el.className = "conf-piece";
-      el.textContent = pieces[Math.floor(Math.random() * pieces.length)];
+      const svgNS = "http://www.w3.org/2000/svg";
+      const el = document.createElementNS(svgNS, "svg");
+
+      el.setAttribute("class", "svg-confetti-piece");
+      el.setAttribute("width", "16");
+      el.setAttribute("height", "16");
+      el.setAttribute("viewBox", "0 0 16 16");
+
+      el.style.position = "absolute";
       el.style.left = Math.random() * 100 + "%";
-      el.style.animationDuration = 1.6 + Math.random() * 1.8 + "s";
+      el.style.top = "-20px";
+      el.style.animationDuration = 2 + Math.random() * 2 + "s";
+      el.style.animationDelay = Math.random() * 0.5 + "s";
+
+      // Create a circle inside the SVG
+      const circle = document.createElementNS(svgNS, "circle");
+      circle.setAttribute("cx", "8");
+      circle.setAttribute("cy", "8");
+      circle.setAttribute("r", "8");
+      circle.setAttribute("fill", `hsl(${Math.random() * 360}, 70%, 50%)`);
+
+      el.appendChild(circle);
       container.appendChild(el);
-      el.addEventListener("animationend", () => el.remove(), { once: true });
-    }, i * 55);
+
+      el.addEventListener(
+        "animationend",
+        () => {
+          el.remove();
+        },
+        { once: true }
+      );
+    }, i * 60);
   }
 }
 
@@ -744,7 +770,7 @@ function moveFoodToOrgan() {
 
 function s2Complete() {
   $("s2-complete").style.display = "flex";
-  launchConfetti($("s2-confetti"));
+  spawnConfetti();
 }
 function resetGame() {
   // Hide final completed popup

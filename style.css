@@ -1390,3 +1390,22 @@ align-items: center;
 #stage-2 .arrow-left .arrow-icon {
   transform: rotate(90deg);
 }
+
+/* SVG circle confetti for completion screen */
+.svg-confetti-piece {
+  z-index: 10;
+  pointer-events: none;
+  animation: svgConfettiFall linear forwards;
+}
+
+@keyframes svgConfettiFall {
+  0% {
+    transform: translateY(0) rotate(0deg) scale(1);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateY(480px) rotate(540deg) scale(0.8);
+    opacity: 0;
+  }
+}
