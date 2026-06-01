@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Digestive Explorer</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- ═══════════════════════════════════════════
+     INTRO SCREEN
+═══════════════════════════════════════════ -->
+    <section id="start-screen" class="start-screen">
+      <div class="start-card">
+        <h1>Digestive Explorer</h1>
+        <p>Learn how food travels through the digestive system.</p>
+
+        <div class="phase-row">
+          <div class="phase-pill">
+            <span>1</span> Build the Digestive System
+          </div>
+
+          <div class="phase-arrow">→</div>
+
+          <div class="phase-pill"><span>2</span> Food Journey</div>
+        </div>
+
+        <button id="btn-start-game" class="btn-start-game">Let's start!</button>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════
+     GLOBAL HEADER
+═══════════════════════════════════════ -->
+    <header class="game-header">
+      <div class="header-logo">Digestive Explorer</div>
+      <div class="stage-pills">
+        <div class="stage-pill active" id="pill-1">
+          <span class="pill-num">1</span> Build the System
+        </div>
+        <div class="stage-pill" id="pill-2">
+          <span class="pill-num">2</span> Food Journey
+        </div>
+      </div>
+      <div class="header-score" id="header-score">⭐ 0</div>
+    </header>
+
+    <!-- ═══════════════════════════════════════
+     STAGE 1 — BUILD THE DIGESTIVE SYSTEM
+═══════════════════════════════════════ -->
+    <section id="stage-1" class="stage active">
+      <div class="stage-instruction">
+        <!-- <span class="inst-icon">👆</span> -->
+        <span id="s1-instruction"
+          >Drag each organ into the correct place in the body!</span
+        >
+      </div>
+      <!-- <img src="images/oesophagus.svg" class="organ-img organ-zone" id="zone-oesophagus" data-organ="oesophagus">
+  <img src="images/stomach.svg" class="organ-img organ-zone" id="zone-stomach" data-organ="stomach">
+  <img src="images/small intestine.svg" class="organ-img organ-zone" id="zone-small-intestine" data-organ="small-intestine">
+  <img src="images/large intestine.svg" class="organ-img organ-zone" id="zone-large-intestine" data-organ="large-intestine">
+  <img src="images/rectum.svg" class="organ-img organ-zone" id="zone-rectum" data-organ="rectum">
+  <img src="images/anus.svg" class="organ-img organ-zone" id="zone-anus" data-organ="anus"> -->
+      <div class="stage1-layout">
+        <!-- LEFT: Body Canvas -->
+        <div class="body-canvas-wrap">
+          <div class="body-canvas" id="body-canvas">
+            <div id="body-svg" class="human-body">
+              <!-- <div id="placed-counter" class="placed-counter">0 / 6 placed</div> -->
+              <img src="images/Body.svg" class="body-img" />
+              <div id="placed-organs-layer"></div>
+            </div>
+          </div>
+          <!-- /tray-grid -->
+        </div>
+        <!-- /organ-tray -->
+        <!-- RIGHT SIDE TRAY -->
+        <div class="organ-tray" id="organ-tray">
+          <div class="tray-title">Drag organs here →</div>
+
+          <div class="tray-grid" id="tray-grid">
+            <!-- organ cards here -->
+
+            <!-- OESOPHAGUS -->
+            <div class="organ-card" data-organ="oesophagus">
+              <div class="organ-card-inner">
+                <img src="images/oesophagus.svg" class="organ-svg" />
+                <div class="organ-label">Oesophagus</div>
+              </div>
+            </div>
+
+            <!-- STOMACH -->
+            <div class="organ-card" data-organ="stomach">
+              <div class="organ-card-inner">
+                <img src="images/stomach.svg" class="organ-svg" />
+                <div class="organ-label">Stomach</div>
+              </div>
+            </div>
+
+            <!-- SMALL INTESTINE -->
+            <div class="organ-card" data-organ="small-intestine">
+              <div class="organ-card-inner">
+                <img src="images/small intestine.svg" class="organ-svg" />
+                <div class="organ-label">Small Intestine</div>
+              </div>
+            </div>
+
+            <!-- LARGE INTESTINE -->
+            <div class="organ-card" data-organ="large-intestine">
+              <div class="organ-card-inner">
+                <img src="images/large intestine.svg" class="organ-svg" />
+                <div class="organ-label">Large Intestine</div>
+              </div>
+            </div>
+
+            <!-- RECTUM -->
+            <div class="organ-card" data-organ="rectum">
+              <div class="organ-card-inner">
+                <img src="images/rectum.svg" class="organ-svg" />
+                <div class="organ-label">Rectum</div>
+              </div>
+            </div>
+
+            <!-- ANUS -->
+            <div class="organ-card" data-organ="anus">
+              <div class="organ-card-inner">
+                <img src="images/anus.svg" class="organ-svg" />
+                <div class="organ-label">Anus</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Stage 1 completion overlay -->
+      <div
+        class="stage-complete-overlay"
+        id="s1-complete"
+        style="display: none"
+      >
+        <div class="stage-complete-card">
+          <h2>Great Job!</h2>
+          <p>You built the digestive system!</p>
+          <button class="btn-next-stage" id="btn-to-stage2">
+            Next: Food Journey →
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- /stage-1 -->
+
+    <!-- ═══════════════════════════════════════
+     STAGE 2 — FOOD JOURNEY
+═══════════════════════════════════════ -->
+    <section id="stage-2" class="stage">
+      <div class="stage-instruction">
+        <!-- <span class="inst-icon">🍎</span> -->
+        <span id="s2-instruction"
+          >Drag the food through each organ in order!</span
+        >
+      </div>
+
+      <div class="stage2-layout">
+        <!-- Digestive path display -->
+        <div class="journey-body-wrap">
+          <div class="journey-body" id="journey-body">
+            <!-- Compact body with glowing organs for journey stage -->
+            <div id="journey-body-svg" class="human-body">
+              <img src="images/Body with liver.svg" class="body-img" />
+              <div id="journey-organs-layer"></div>
+              <div id="journey-hit-layer"></div>
+            </div>
+
+            <!-- Draggable food item -->
+            <div id="food-item" class="food-item" draggable="true" tabindex="0">
+              <img src="images/apple.svg" class="food-img" />
+            </div>
+            <div id="arrow-control" class="arrow-control">
+              <div class="arrow-core"></div>
+
+              <button class="arrow-btn arrow-up" data-dir="up" aria-label="Up">
+                <svg
+                  class="arrow-icon"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M38 10
+             Q32 10 31 16
+             L35 42
+             Q35 48 29 49
+             L13 51
+             Q5 52 4 59
+             Q3 66 9 71
+             L42 95
+             Q50 101 58 95
+             L91 71
+             Q97 66 96 59
+             Q95 52 87 51
+             L71 49
+             Q65 48 65 42
+             L69 16
+             Q68 10 62 10
+             Z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                class="arrow-btn arrow-right"
+                data-dir="right"
+                aria-label="Right"
+              >
+                <svg
+                  class="arrow-icon"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M38 10
+             Q32 10 31 16
+             L35 42
+             Q35 48 29 49
+             L13 51
+             Q5 52 4 59
+             Q3 66 9 71
+             L42 95
+             Q50 101 58 95
+             L91 71
+             Q97 66 96 59
+             Q95 52 87 51
+             L71 49
+             Q65 48 65 42
+             L69 16
+             Q68 10 62 10
+             Z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                class="arrow-btn arrow-down"
+                data-dir="down"
+                aria-label="Down"
+              >
+                <svg
+                  class="arrow-icon"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M38 10
+             Q32 10 31 16
+             L35 42
+             Q35 48 29 49
+             L13 51
+             Q5 52 4 59
+             Q3 66 9 71
+             L42 95
+             Q50 101 58 95
+             L91 71
+             Q97 66 96 59
+             Q95 52 87 51
+             L71 49
+             Q65 48 65 42
+             L69 16
+             Q68 10 62 10
+             Z"
+                  />
+                </svg>
+              </button>
+
+              <button
+                class="arrow-btn arrow-left"
+                data-dir="left"
+                aria-label="Left"
+              >
+                <svg
+                  class="arrow-icon"
+                  viewBox="0 0 100 100"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M38 10
+             Q32 10 31 16
+             L35 42
+             Q35 48 29 49
+             L13 51
+             Q5 52 4 59
+             Q3 66 9 71
+             L42 95
+             Q50 101 58 95
+             L91 71
+             Q97 66 96 59
+             Q95 52 87 51
+             L71 49
+             Q65 48 65 42
+             L69 16
+             Q68 10 62 10
+             Z"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <!-- /journey-body -->
+        </div>
+        <!-- /journey-body-wrap -->
+
+        <!-- Journey info panel -->
+        <div class="journey-info-panel">
+          <div class="journey-progress-title">Digestion Path</div>
+
+          <div class="journey-steps" id="journey-steps">
+            <!-- Steps rendered by JS -->
+          </div>
+
+          <div class="journey-fact-box" id="journey-fact-box">
+            <div class="fact-icon">💡</div>
+            <div class="fact-text" id="fact-text">
+              Drag the apple to the <strong>Mouth</strong> to begin!
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /stage2-layout -->
+
+      <!-- Stage 2 completion overlay -->
+      <div
+        class="stage-complete-overlay"
+        id="s2-complete"
+        style="display: none"
+      >
+        <div class="stage-complete-card s2-card">
+          <div class="confetti-wrap" id="s2-confetti"></div>
+          <!-- <div class="sc-emoji">🏆</div> -->
+          <h2>Congratulations!</h2>
+          <p>You completed the journey of digestion!</p>
+          <!-- <div class="sc-stars" id="s2-stars">⭐⭐⭐⭐⭐</div> -->
+          <!-- <div class="final-score-box" id="final-score-box"></div> -->
+          <button class="btn-replay" id="btn-replay">Play Again!</button>
+        </div>
+      </div>
+    </section>
+    <!-- /stage-2 -->
+
+    <!-- Global feedback toast -->
+    <div class="toast" id="toast"></div>
+
+    <script src="Organ-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
