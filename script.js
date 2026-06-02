@@ -10,9 +10,9 @@ function speakText(text) {
     const femaleVoice = voices.find(
       voice =>
         voice.name.toLowerCase().includes("female") ||
-        voice.name.toLowerCase().includes("zira") ||
-        voice.name.toLowerCase().includes("susan") ||
-        voice.name.toLowerCase().includes("samantha")
+        //  voice.name.toLowerCase().includes("zira") 
+         voice.name.toLowerCase().includes("susan") 
+        // voice.name.toLowerCase().includes("samantha")
     );
 
     if (femaleVoice) {
@@ -68,34 +68,34 @@ const FOOD_PATH = [
   // { organ: "mouth", x: 35, y: 150, type: "apple", arrow: "right" },
 
   // Inside mouth position
-  { organ: "mouth", x: 175, y: 175, type: "apple", arrow: "right" },
+  { organ: "mouth", x: 250, y: 175, type: "apple", arrow: "right" },
   // Oesophagus
-  { organ: "oesophagus", x: 235, y: 185, type: "chunks", arrow: "right" },
-  { organ: "oesophagus", x: 257, y: 260, type: "chunks", arrow: "down" },
-  { organ: "oesophagus", x: 250, y: 350, type: "chunks", arrow: "down" },
+  { organ: "oesophagus", x: 305, y: 185, type: "chunks", arrow: "right" },
+  { organ: "oesophagus", x: 323, y: 260, type: "chunks", arrow: "down" },
+  { organ: "oesophagus", x: 315, y: 350, type: "chunks", arrow: "down" },
 
   // Stomach
   
-  { organ: "stomach", x: 295, y: 455, type: "semi", arrow: "down" },
-  { organ: "stomach", x: 265, y: 485, type: "semi", arrow: "left" },
-  { organ: "stomach", x: 225, y: 495, type: "semi", arrow: "left" },
+  { organ: "stomach", x: 370, y: 455, type: "semi", arrow: "down" },
+  { organ: "stomach", x: 340, y: 485, type: "semi", arrow: "left" },
+  { organ: "stomach", x: 290, y: 495, type: "semi", arrow: "left" },
 
   // Small intestine
-  { organ: "small-intestine", x: 280, y: 555, type: "liquid", arrow: "down" },
-  { organ: "small-intestine", x: 210, y: 570, type: "liquid", arrow: "left" },
-  { organ: "small-intestine", x: 260, y: 585, type: "liquid", arrow: "right" },
-  { organ: "small-intestine", x: 230, y: 610, type: "liquid", arrow: "left" },
+  { organ: "small-intestine", x: 345, y: 555, type: "liquid", arrow: "down" },
+  { organ: "small-intestine", x: 275, y: 570, type: "liquid", arrow: "left" },
+  { organ: "small-intestine", x: 325, y: 585, type: "liquid", arrow: "right" },
+  { organ: "small-intestine", x: 295, y: 610, type: "liquid", arrow: "left" },
 
   // Large intestine
-  { organ: "large-intestine", x: 170, y: 580, type: "liquid", arrow: "left" },
-  { organ: "large-intestine", x: 230, y: 535, type: "liquid", arrow: "up" },
-  { organ: "large-intestine", x: 295, y: 500, type: "liquid", arrow: "right" },
-  { organ: "large-intestine", x: 310, y: 555, type: "liquid", arrow: "down" },
-  { organ: "large-intestine", x: 280, y: 645, type: "liquid", arrow: "down" },
+  { organ: "large-intestine", x: 235, y: 580, type: "liquid", arrow: "left" },
+  { organ: "large-intestine", x: 295, y: 535, type: "liquid", arrow: "up" },
+  { organ: "large-intestine", x: 360, y: 500, type: "waste", arrow: "right" },
+  { organ: "large-intestine", x: 375, y: 555, type: "waste", arrow: "down" },
+  { organ: "large-intestine", x: 345, y: 645, type: "wastegi", arrow: "down" },
 
   // Rectum / Anus
-  { organ: "rectum", x: 240, y: 660, type: "waste", arrow: "down" },
-  { organ: "anus", x: 240, y: 685, type: "waste", arrow: "down" }
+  { organ: "rectum", x: 305, y: 660, type: "waste", arrow: "down" },
+  { organ: "anus", x: 305, y: 685, type: "waste", arrow: "down" }
 ];
 
 let foodPathStep = 0;
@@ -721,7 +721,7 @@ function handleArrowClick(e) {
   if (clickedArrow === currentPoint.arrow) {
     moveFoodToOrgan();
   } else {
-    showToast("Wrong direction! Try the correct direction.", "wrong");
+    showToast("Oops! Food doesn’t go that way. Try another path!", "wrong");
   }
 }
 
@@ -745,7 +745,7 @@ function moveFoodToOrgan() {
   food.className = "food-item food-" + point.type;
 
   // Move arrow along
-  arrow.style.left = point.x + 70 + "px";
+  arrow.style.left = point.x + 110 + "px";
   arrow.style.top = point.y - 24 + "px";
 
   // Update journey step only when organ changes
@@ -774,28 +774,49 @@ function s2Complete() {
   spawnConfetti();
 }
 function resetGame() {
-  // Hide final completed popup
-  const completeBox = document.getElementById("s2-complete");
-  if (completeBox) {
-    completeBox.style.display = "none";
+  // Hide intro screen always
+  const startScreen = document.getElementById("start-screen");
+  if (startScreen) {
+    startScreen.style.display = "none";
   }
 
-  // Hide stage 2 Food Journey
-  const stage2 = document.getElementById("stage-2");
-  if (stage2) {
-    stage2.classList.remove("active");
-    stage2.style.display = "none";
+  // Hide stage 1 complete popup
+  const s1CompleteBox = document.getElementById("s1-complete");
+  if (s1CompleteBox) {
+    s1CompleteBox.style.display = "none";
   }
 
-  // Show stage 1 Build the System
-  const stage1 = document.getElementById("stage-1");
-  if (stage1) {
-    stage1.classList.add("active");
-    stage1.style.display = "flex";
+  // Hide stage 2 complete popup
+  const s2CompleteBox = document.getElementById("s2-complete");
+  if (s2CompleteBox) {
+    s2CompleteBox.style.display = "none";
   }
 
-  // Reset top stage pills
-  const pill1 = document.getElementById("pill-1"); 
+  // Clear confetti
+  const confetti = document.getElementById("s2-confetti");
+  if (confetti) {
+    confetti.innerHTML = "";
+  }
+
+  // Reset all game values
+  gameState.stage = 1;
+  gameState.score = 0;
+  gameState.journeyStep = 0;
+  gameState.placedOrgans.clear();
+
+  foodPathStep = 0;
+
+  // Reset score
+  const score = document.getElementById("header-score");
+  if (score) {
+    score.textContent = "⭐ 0";
+  }
+
+  // Show Stage 1 directly
+  showStage(1);
+
+  // Reset stage pills
+  const pill1 = document.getElementById("pill-1");
   const pill2 = document.getElementById("pill-2");
 
   if (pill1) {
@@ -807,26 +828,55 @@ function resetGame() {
     pill2.classList.remove("active", "done");
   }
 
-  // Reset basic game values
-  gameState.stage = 1;
-  gameState.score = 0;
-  gameState.journeyStep = 0;
-  foodPathStep = 0;
-
-  const score = document.getElementById("header-score");
-  if (score) {
-    score.textContent = "⭐ 0";
-  }
-
-  // Clear already placed organs
+  // Clear placed organs
   const placedLayer = document.getElementById("placed-organs-layer");
   if (placedLayer) {
     placedLayer.innerHTML = "";
   }
 
-  // Build organs again
+  // Rebuild Build System stage
   generateDropZones();
   generateOrganCards();
+
+  // Reset placed counter if available
+  const placedCounter = document.getElementById("placed-counter");
+  if (placedCounter) {
+    placedCounter.textContent = `0 / ${ORGANS.length} placed`;
+  }
+
+  // Rebuild Food Journey also, so it is fresh when user reaches Stage 2
+  generateJourneyOrgans();
+  buildJourneySteps();
+  updateJourneySteps(0);
+  updateJourneyOrganStates();
+
+  const factText = document.getElementById("fact-text");
+  if (factText) {
+    factText.innerHTML = `Drag the apple to the <strong>Mouth</strong> to begin!`;
+  }
+
+  // Reset food and arrow position
+  const food = document.getElementById("food-item");
+  const arrow = document.getElementById("arrow-control");
+
+  if (food && arrow) {
+    const firstPoint = FOOD_PATH[0];
+
+    food.className = "food-item food-apple";
+    food.style.position = "absolute";
+    food.style.transition = "none";
+
+    setTimeout(() => {
+      food.style.left = firstPoint.x - food.offsetWidth / 2 - 100 + "px";
+      food.style.top = firstPoint.y - food.offsetHeight / 2 + "px";
+
+      arrow.style.display = "grid";
+      arrow.style.left = firstPoint.x - 80 + "px";
+      arrow.style.top = firstPoint.y + 30 + "px";
+    }, 100);
+  }
+
+  speakText("Drag each organ into the correct place in the body.");
 }
 document.querySelectorAll(".arrow-btn").forEach((btn) => {
   btn.addEventListener("click", handleArrowClick);

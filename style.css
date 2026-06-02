@@ -411,19 +411,22 @@ body::before {
 
 .journey-body {
   position: relative;
-  /* display: flex; */
-justify-content: center;
-align-items: center;
+  justify-content: center;
+  align-items: center;
+
   background: radial-gradient(ellipse at 50% 40%, rgba(0,191,165,.07) 0%, transparent 70%),
               linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-panel) 100%);
+
   border: 2px solid rgba(0,191,165,.2);
-  border-radius: var(--radius-xl);
-  padding: 32px;
-  /* width: 100%; */
-  max-width: 880px;
+  border-radius: 28px;
+
+  /* Change these values to resize the rounded rectangle */
+  width: 620px;
+  height: 780px;
+
+  padding: 20px;
   box-shadow: var(--shadow-md);
   overflow: hidden;
-  
 }
 
 #journey-svg {
@@ -1408,4 +1411,37 @@ align-items: center;
     transform: translateY(480px) rotate(540deg) scale(0.8);
     opacity: 0;
   }
+}
+
+
+/* CENTER BODY INSIDE ROUNDED RECTANGLE */
+#stage-2 .journey-body {
+  position: relative !important;
+  width: 620px !important;
+  height: 780px !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+/* This is the main fix */
+#stage-2 #journey-body-svg {
+  position: relative !important;
+  width: 420px !important;
+  height: 720px !important;
+
+  left: 0 !important;
+  top: 0 !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+/* Make body image fit inside its own wrapper */
+#stage-2 #journey-body-svg .body-img {
+  /* width: 100% !important; */
+  height: 100% !important;
+  object-fit: contain !important;
+  display: block !important;
 }
