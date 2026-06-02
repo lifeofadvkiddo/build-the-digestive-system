@@ -68,33 +68,34 @@ const FOOD_PATH = [
   // { organ: "mouth", x: 35, y: 150, type: "apple", arrow: "right" },
 
   // Inside mouth position
-  { organ: "mouth", x: 115, y: 155, type: "apple", arrow: "right" },
+  { organ: "mouth", x: 175, y: 175, type: "apple", arrow: "right" },
   // Oesophagus
-  { organ: "oesophagus", x: 200, y: 185, type: "chunks", arrow: "down" },
-  { organ: "oesophagus", x: 202, y: 260, type: "chunks", arrow: "down" },
-  { organ: "oesophagus", x: 200, y: 350, type: "chunks", arrow: "down" },
+  { organ: "oesophagus", x: 235, y: 185, type: "chunks", arrow: "right" },
+  { organ: "oesophagus", x: 257, y: 260, type: "chunks", arrow: "down" },
+  { organ: "oesophagus", x: 250, y: 350, type: "chunks", arrow: "down" },
 
   // Stomach
   
-  { organ: "stomach", x: 250, y: 430, type: "semi", arrow: "down" },
-  { organ: "stomach", x: 230, y: 460, type: "semi", arrow: "left" },
-  { organ: "stomach", x: 170, y: 480, type: "semi", arrow: "left" },
+  { organ: "stomach", x: 295, y: 455, type: "semi", arrow: "down" },
+  { organ: "stomach", x: 265, y: 485, type: "semi", arrow: "left" },
+  { organ: "stomach", x: 225, y: 495, type: "semi", arrow: "left" },
 
   // Small intestine
-  { organ: "small-intestine", x: 220, y: 535, type: "liquid", arrow: "down" },
-  { organ: "small-intestine", x: 150, y: 550, type: "liquid", arrow: "left" },
-  { organ: "small-intestine", x: 210, y: 565, type: "liquid", arrow: "right" },
-  { organ: "small-intestine", x: 160, y: 590, type: "liquid", arrow: "left" },
+  { organ: "small-intestine", x: 280, y: 555, type: "liquid", arrow: "down" },
+  { organ: "small-intestine", x: 210, y: 570, type: "liquid", arrow: "left" },
+  { organ: "small-intestine", x: 260, y: 585, type: "liquid", arrow: "right" },
+  { organ: "small-intestine", x: 230, y: 610, type: "liquid", arrow: "left" },
 
   // Large intestine
-  { organ: "large-intestine", x: 115, y: 560, type: "liquid", arrow: "left" },
-  { organ: "large-intestine", x: 175, y: 515, type: "liquid", arrow: "up" },
-  { organ: "large-intestine", x: 253, y: 535, type: "liquid", arrow: "right" },
-  { organ: "large-intestine", x: 220, y: 625, type: "liquid", arrow: "down" },
+  { organ: "large-intestine", x: 170, y: 580, type: "liquid", arrow: "left" },
+  { organ: "large-intestine", x: 230, y: 535, type: "liquid", arrow: "up" },
+  { organ: "large-intestine", x: 295, y: 500, type: "liquid", arrow: "right" },
+  { organ: "large-intestine", x: 310, y: 555, type: "liquid", arrow: "down" },
+  { organ: "large-intestine", x: 280, y: 645, type: "liquid", arrow: "down" },
 
   // Rectum / Anus
-  { organ: "rectum", x: 185, y: 645, type: "waste", arrow: "down" },
-  { organ: "anus", x: 185, y: 670, type: "waste", arrow: "down" }
+  { organ: "rectum", x: 240, y: 660, type: "waste", arrow: "down" },
+  { organ: "anus", x: 240, y: 685, type: "waste", arrow: "down" }
 ];
 
 let foodPathStep = 0;
@@ -744,7 +745,7 @@ function moveFoodToOrgan() {
   food.className = "food-item food-" + point.type;
 
   // Move arrow along
-  arrow.style.left = point.x + 28 + "px";
+  arrow.style.left = point.x + 70 + "px";
   arrow.style.top = point.y - 24 + "px";
 
   // Update journey step only when organ changes

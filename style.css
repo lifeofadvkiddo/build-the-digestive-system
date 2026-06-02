@@ -418,9 +418,9 @@ align-items: center;
               linear-gradient(180deg, var(--bg-mid) 0%, var(--bg-panel) 100%);
   border: 2px solid rgba(0,191,165,.2);
   border-radius: var(--radius-xl);
-  padding: 14px;
-  width: 100%;
-  max-width: 380px;
+  padding: 32px;
+  /* width: 100%; */
+  max-width: 880px;
   box-shadow: var(--shadow-md);
   overflow: hidden;
   
