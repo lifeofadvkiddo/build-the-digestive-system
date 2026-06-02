@@ -795,7 +795,7 @@ function resetGame() {
   }
 
   // Reset top stage pills
-  const pill1 = document.getElementById("pill-1");
+  const pill1 = document.getElementById("pill-1"); 
   const pill2 = document.getElementById("pill-2");
 
   if (pill1) {
