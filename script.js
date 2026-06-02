@@ -725,6 +725,21 @@ function handleArrowClick(e) {
   }
 }
 
+function updateFoodFactBox(currentOrganId) {
+  const factBox = document.getElementById("journey-fact-box");
+  if (!factBox) return;
+
+  const organ = JOURNEY_ORGANS.find(o => o.id === currentOrganId);
+  if (!organ) return;
+
+  factBox.innerHTML = `
+    <div class="fact-icon">💡</div>
+    <div class="fact-text">
+      <strong>${organ.label}:</strong> ${organ.fact}
+    </div>
+  `;
+}
+
 function moveFoodToOrgan() {
   const point = FOOD_PATH[foodPathStep];
   const food = document.getElementById("food-item");
@@ -741,8 +756,11 @@ function moveFoodToOrgan() {
   food.style.left = point.x - food.offsetWidth / 2 + "px";
   food.style.top = point.y - food.offsetHeight / 2 + "px";
 
-  // Change food type class
+  // Change food image/type
   food.className = "food-item food-" + point.type;
+
+  // Show organ fact in the hint box
+  updateFoodFactBox(point.organ);
 
   // Move arrow along
   arrow.style.left = point.x + 110 + "px";
@@ -759,7 +777,7 @@ function moveFoodToOrgan() {
 
   foodPathStep++;
 
-  // SHOW COMPLETED SCREEN AFTER FINAL FOOD PATH POINT
+  // Show completed screen after final food path point
   if (foodPathStep >= FOOD_PATH.length) {
     arrow.style.display = "none";
 
@@ -767,6 +785,39 @@ function moveFoodToOrgan() {
       s2Complete();
     }, 700);
   }
+}
+
+function updateFoodHint() {
+  const factBox = document.getElementById("journey-fact-box");
+  if (!factBox) return;
+
+  const nextPoint = FOOD_PATH[foodPathStep];
+
+  if (!nextPoint) {
+    factBox.innerHTML = `
+      <div class="fact-icon">🎉</div>
+      <div class="fact-text">
+        Great job! The food journey is complete!
+      </div>
+    `;
+    return;
+  }
+
+  const organName = nextPoint.organ
+    .replace("small-intestine", "Small Intestine")
+    .replace("large-intestine", "Large Intestine")
+    .replace("oesophagus", "Oesophagus")
+    .replace("stomach", "Stomach")
+    .replace("mouth", "Mouth")
+    .replace("rectum", "Rectum")
+    .replace("anus", "Anus");
+
+  factBox.innerHTML = `
+    <div class="fact-icon">💡</div>
+    <div class="fact-text">
+      Move the food to the <strong>${organName}</strong>.
+    </div>
+  `;
 }
 
 function s2Complete() {
