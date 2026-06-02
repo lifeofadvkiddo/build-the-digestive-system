@@ -91,7 +91,7 @@ const FOOD_PATH = [
   { organ: "large-intestine", x: 295, y: 535, type: "liquid", arrow: "up" },
   { organ: "large-intestine", x: 360, y: 500, type: "waste", arrow: "right" },
   { organ: "large-intestine", x: 375, y: 555, type: "waste", arrow: "down" },
-  { organ: "large-intestine", x: 345, y: 645, type: "wastegi", arrow: "down" },
+  { organ: "large-intestine", x: 345, y: 645, type: "waste", arrow: "down" },
 
   // Rectum / Anus
   { organ: "rectum", x: 305, y: 660, type: "waste", arrow: "down" },
